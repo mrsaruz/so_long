@@ -6,7 +6,7 @@
 #    By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/18 16:36:34 by adruz-to          #+#    #+#              #
-#    Updated: 2025/06/18 16:37:13 by adruz-to         ###   ########.fr        #
+#    Updated: 2025/06/25 13:08:32 by adruz-to         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,9 @@ CFLAGS = -Wall -Werror -Wextra -g -Iinclude
 # Libft
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
+
+# Minilibx
+MLX_DIR = ./minilibx-linux
 
 # Source files
 SRCS = 
