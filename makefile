@@ -6,7 +6,7 @@
 #    By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/18 16:36:34 by adruz-to          #+#    #+#              #
-#    Updated: 2025/06/26 17:16:25 by adruz-to         ###   ########.fr        #
+#    Updated: 2025/06/27 12:38:22 by adruz-to         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,33 +15,33 @@ NAME = so_long
 
 # Compiler and flags
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g -Iinclude -I$(MLX42_DIR)/include -I$(LIBFT_DIR) -I$(FT_PRINTF_DIR) -I./get_next_line 
+CFLAGS = -Wall -Werror -Wextra -g -Iinclude
 
 # Libft
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 # Ft_Printf
-FT_PRINTF_DIR = ./ft_printf/ft_printf
-FT_PRINTF = $(FT_PRINTF_DIR)/libftprintf.a
+FT_PRINTF_DIR = ./ft_printf
+FT_PRINTF = $(FT_PRINTF_DIR)/ft_printf.a
 
 #Get next line
-GET_NEXT_LINE_SRCS = ./get_next_line/get_next_line.c ./get_next_line/get_next_line_utils.c
-GET_NEXT_LINE_OBJS = $(GET_NEXT_LINE_SRCS:%.c=%.o)
+GET_NEXT_LINE_DIR = ./get_next_line
+GET_NEXT_LINE = $(GET_NEXT_LINE_DIR)/get_next_line.a
 
 # Minilibx
 MLX42_DIR = ./MLX42
-MLX42 = $(MLX42_DIR)/build/libmlx42.a
-MLX42_FLAGS = -ldl -lglfw -pthread -lm
+MLX42 = $(MLX42_DIR)/libmlx42.a
 
 # Source files
-SRCS = so_long.c
-		
+SRCS = 
+
+
 # Objects files
 OBJS = $(SRCS:%.c=%.o)
 
-$(NAME): $(OBJS) $(LIBFT) $(FT_PRINTF) $(GET_NEXT_LINE_OBJS) $(MLX42)
-		$(CC) $(CFLAGS) $(OBJS) $(GET_NEXT_LINE_OBJS) $(LIBFT) $(FT_PRINTF) $(MLX42) $(MLX42_FLAGS) -o $(NAME)
+$(NAME): $(OBJS) $(LIBFT)
+		$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -49,22 +49,16 @@ $(NAME): $(OBJS) $(LIBFT) $(FT_PRINTF) $(GET_NEXT_LINE_OBJS) $(MLX42)
 $(LIBFT):
 		$(MAKE) -C $(LIBFT_DIR)
 
-$(FT_PRINTF):
-		$(MAKE) -C $(FT_PRINTF_DIR)
-
-$(MLX42):
-		cd $(MLX42_DIR) && cmake -B build && make -C build
-
 # Rules
 
 all: $(NAME)
 
 clean:
-		rm -f $(OBJS) $(GET_NEXT_LINE_OBJS)
+		rm -f $(OBJS)
 		$(MAKE) -C $(LIBFT_DIR) clean
 		$(MAKE) -C $(FT_PRINTF_DIR) clean
-# si existe el directorio de build de MLX42, limpia los archivos compilados, si no existe, no hagas nada
-		if [ -d "$(MLX42_DIR)/build" ]; then $(MAKE) -C $(MLX42_DIR)/build clean; fi
+		$(MAKE) -C $(GET_NEXT_LINE_DIR) clean
+		$(MAKE) -C $(MLX42_DIR) clean
 
 fclean: clean
 		rm -f $(NAME)
