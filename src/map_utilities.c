@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 17:04:06 by adruz-to          #+#    #+#             */
-/*   Updated: 2025/07/01 12:38:07 by adruz-to         ###   ########.fr       */
+/*   Updated: 2025/07/04 13:33:38 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,15 @@ int	count_map_height(char *filename)
 // Asigna memoria para la matriz map->grid
 char	**allocate_map_grid(int height)
 {
+	char	**grid;
+
+	grid = malloc(sizeof(char *) * height);
+	if (!grid)
+	{
+		ft_printf("Error: Memory allocation failed for map grid\n");
+		return (NULL);
+	}
+	return (grid);
 }
 
 // Llena la matriz map->grid con las líneas del archivo
