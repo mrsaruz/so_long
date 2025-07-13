@@ -6,11 +6,11 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 18:45:56 by adruz-to          #+#    #+#             */
-/*   Updated: 2025/06/27 16:58:33 by adruz-to         ###   ########.fr       */
+/*   Updated: 2025/07/12 20:06:12 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../include/so_long.h"
 
 static void	init_game(t_game *game)
 {
@@ -22,8 +22,8 @@ static void	init_game(t_game *game)
 	game->map.width = 0;
 	game->map.height = 0;
 	game->map.collectibles = 0;
-	game->map.exits = 0;
-	game->map.players = 0;
+	game->map.exit = 0;
+	game->map.player = 0;
 	// Inicializamos la estructura del jugador (se establece la posición inicial y el contador de movimientos)
 	game->player.x = 0;
 	game->player.y = 0;
