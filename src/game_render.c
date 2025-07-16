@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 11:20:04 by adruz-to          #+#    #+#             */
-/*   Updated: 2025/07/13 12:24:22 by adruz-to         ###   ########.fr       */
+/*   Updated: 2025/07/16 12:55:11 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,34 @@
 // Renderizar un tile específico
 static void	render_tile(t_game *game, int x, int y, char tile_type)
 {
-	mlx_image_to_window(game->mlx, game->floor.ptr, x * TILE_SIZE, y * TILE_SIZE);
-
-	if (tile_type == '1')
-		mlx_image_to_window(game->mlx, game->wall.ptr, x * TILE_SIZE, y * TILE_SIZE);
-	else if (tile_type == 'P')
-		mlx_image_to_window(game->mlx, game->player_img.ptr, x * TILE_SIZE, y * TILE_SIZE);
-	else if (tile_type == 'C')
-		mlx_image_to_window(game->mlx, game->collectible.ptr, x * TILE_SIZE, y * TILE_SIZE);
-	else if (tile_type == 'E')
-		mlx_image_to_window(game->mlx, game->exit.ptr, x * TILE_SIZE, y * TILE_SIZE);
+	if (!game || !game->mlx || !game->floor.ptr)
+		return ;
+	if (mlx_image_to_window(game->mlx, game->floor.ptr, x * TILE_SIZE, y
+		* TILE_SIZE) < 0)
+		return ;
+	if (tile_type == '1' && game->wall.ptr)
+		mlx_image_to_window(game->mlx, game->wall.ptr, x * TILE_SIZE, y
+			* TILE_SIZE);
+	else if (tile_type == 'P' && game->player_img.ptr)
+		mlx_image_to_window(game->mlx, game->player_img.ptr, x * TILE_SIZE, y
+			* TILE_SIZE);
+	else if (tile_type == 'C' && game->collectible.ptr)
+		mlx_image_to_window(game->mlx, game->collectible.ptr, x * TILE_SIZE, y
+			* TILE_SIZE);
+	else if (tile_type == 'E' && game->exit.ptr)
+		mlx_image_to_window(game->mlx, game->exit.ptr, x * TILE_SIZE, y
+			* TILE_SIZE);
 }
 
 // Renderizar mapa completo
 void	render_map(t_game *game)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
+	if (!game || !game->map.grid)
+		return ;
+	ft_printf("Starting map render: %dx%d\n", game->map.width, game->map.height);
 	y = 0;
 	while (y < game->map.height)
 	{
@@ -44,4 +54,5 @@ void	render_map(t_game *game)
 		}
 		y++;
 	}
+	ft_printf("Map render completed\n");
 }

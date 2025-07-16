@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 16:50:04 by adruz-to          #+#    #+#             */
-/*   Updated: 2025/07/13 12:32:17 by adruz-to         ###   ########.fr       */
+/*   Updated: 2025/07/16 18:37:39 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@ void	key_handler(mlx_key_data_t keydata, void *param)
 {
 	t_game	*game;
 
+	ft_printf("DEBUG: Key handler called with key: %d\n", keydata.key);
+
+	if (!param)
+	{
+		ft_printf("DEBUG: param is NULL\n");
+		return ;
+	}
 	game = (t_game *)param;
 	if (keydata.action == MLX_PRESS)
 	{
