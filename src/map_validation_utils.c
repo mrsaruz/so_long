@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 12:16:32 by adruz-to          #+#    #+#             */
-/*   Updated: 2025/07/13 18:23:44 by adruz-to         ###   ########.fr       */
+/*   Updated: 2025/07/17 15:45:35 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ int	validate_map_rectangle(t_map *map)
 // Valida caracteres válidos en el mapa
 int	validate_map_chars(t_map *map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < map->height)
@@ -88,11 +88,12 @@ int	validate_map_chars(t_map *map)
 		j = 0;
 		while (j < map->width)
 		{
-			if (map->grid[i][j] != '0' && map->grid[i][j] != '1' &&
-				map->grid[i][j] != 'P' && map->grid[i][j] != 'E' &&
-				map->grid[i][j] != 'C')
+			if (map->grid[i][j] != '0' && map->grid[i][j] != '1'
+				&& map->grid[i][j] != 'P' && map->grid[i][j] != 'E'
+				&& map->grid[i][j] != 'C')
 			{
-				ft_printf("Error: Invalid character '%c' in map.\n", map->grid[i][j]);
+				ft_printf("Error: Invalid character '%c' in map.\n",
+					map->grid[i][j]);
 				return (0);
 			}
 			j++;

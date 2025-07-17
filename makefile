@@ -6,7 +6,7 @@
 #    By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/18 16:36:34 by adruz-to          #+#    #+#              #
-#    Updated: 2025/07/13 18:42:40 by adruz-to         ###   ########.fr        #
+#    Updated: 2025/07/17 13:06:42 by adruz-to         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRCS = src/game_events.c \
 	src/map_validation_utils.c \
 	src/map_validation.c \
 	src/player_movement.c \
+	src/player_utils.c \
 	src/so_long_utils.c \
 	src/so_long.c \
 	get_next_line/get_next_line.c \

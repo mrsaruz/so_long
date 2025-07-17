@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:55:04 by adruz-to          #+#    #+#             */
-/*   Updated: 2025/07/16 18:34:18 by adruz-to         ###   ########.fr       */
+/*   Updated: 2025/07/17 15:54:00 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,25 +47,13 @@ static void	free_map(t_game *game)
 	game->map.grid = NULL;
 }
 
-// Función principal que llama a las otras dos
+// Función principal
 void	close_game(t_game *game)
 {
-	ft_printf("Debug: close_game started\n");
 	if (!game)
-	{
-		ft_printf("Debug: game is NULL, returning\n");
 		return ;
-	}
-	// ft_printf("Debug: About to free images\n");
-	// free_images(game);
-	ft_printf("Debug: about to free map\n");
+
 	free_map(game);
-	ft_printf("Debug: Map freed, about to terminate MLX\n");
 	if (game->mlx)
-	{
-		mlx_terminate(game->mlx);
 		game->mlx = NULL;
-		ft_printf("Debug: MLX terminated\n");
-	}
-	ft_printf("Debug: close_game completed\n");
 }

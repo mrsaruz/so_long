@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 11:20:04 by adruz-to          #+#    #+#             */
-/*   Updated: 2025/07/16 12:55:11 by adruz-to         ###   ########.fr       */
+/*   Updated: 2025/07/17 13:21:22 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	render_map(t_game *game)
 
 	if (!game || !game->map.grid)
 		return ;
-	ft_printf("Starting map render: %dx%d\n", game->map.width, game->map.height);
 	y = 0;
 	while (y < game->map.height)
 	{
@@ -54,5 +53,4 @@ void	render_map(t_game *game)
 		}
 		y++;
 	}
-	ft_printf("Map render completed\n");
 }
