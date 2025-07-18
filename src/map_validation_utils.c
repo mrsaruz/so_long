@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 12:16:32 by adruz-to          #+#    #+#             */
-/*   Updated: 2025/07/17 15:45:35 by adruz-to         ###   ########.fr       */
+/*   Updated: 2025/07/17 18:52:08 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,18 @@ int	validate_map_rectangle(t_map *map)
 {
 	int	i;
 	int	first_row_len;
+	int	current_len;
 
-	if (!map->grid || !map->grid[0])
+	if (!map || !map->grid || map->height <= 0)
 		return (0);
 	first_row_len = (int)ft_strlen(map->grid[0]);
-	map->width = first_row_len; // Establece el ancho del mapa
-	i = 1;
+	if (first_row_len <= 0)
+		return (0);
+	i = 0;
 	while (i < map->height)
 	{
-		if ((int)ft_strlen(map->grid[i]) != first_row_len)
+		current_len = ft_strlen(map->grid[i]);
+		if (current_len != first_row_len)
 		{
 			ft_printf("Error: Map is not rectangular.\n");
 			return (0);
@@ -88,6 +91,8 @@ int	validate_map_chars(t_map *map)
 		j = 0;
 		while (j < map->width)
 		{
+			if (map->grid[i][j] == ' ' || map->grid[i][j] == '\t')
+				return (0);
 			if (map->grid[i][j] != '0' && map->grid[i][j] != '1'
 				&& map->grid[i][j] != 'P' && map->grid[i][j] != 'E'
 				&& map->grid[i][j] != 'C')

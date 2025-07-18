@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:34:51 by adruz-to          #+#    #+#             */
-/*   Updated: 2025/07/17 15:51:03 by adruz-to         ###   ########.fr       */
+/*   Updated: 2025/07/17 18:04:58 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,6 @@ void	update_player_position(t_game *game, int old_x, int old_y, int new_x,
 	// 2. Colocar la base en la nueva posición (suelo o salida)
 	mlx_image_to_window(game->mlx, game->floor.ptr, new_x * TILE_SIZE, new_y
 		* TILE_SIZE);
-	// 3. Si la nueva posición es la salida, colocar la imagen de salida
-	if (game->map.grid[new_y][new_x] == 'E')
-	{
-		mlx_image_to_window(game->mlx, game->exit.ptr, new_x * TILE_SIZE, new_y
-			* TILE_SIZE);
-	}
-	// 4. FINALMENTE, colocar al jugador ENCIMA de todo
-	mlx_image_to_window(game->mlx, game->player_img.ptr, new_x * TILE_SIZE,
-		new_y * TILE_SIZE);
 }
 
 // Función principal para mover al jugador (dx horizontal, dy vertical)
@@ -90,14 +81,16 @@ void	move_player(t_game *game, int dx, int dy)
 	old_y = game->player.y;
 	new_x = game->player.x + dx;
 	new_y = game->player.y + dy;
-
 	if (can_move_to(game, new_x, new_y))
 	{
 		original_tile = game->map.grid[new_y][new_x];
-		collect_item(game, new_x, new_y);
-		update_map_grid(game, old_x, old_y, new_x, new_y, original_tile);
 		update_player_coordinates(game, new_x, new_y);
 		update_player_position(game, old_x, old_y, new_x, new_y);
+		collect_item(game, new_x, new_y);
+		update_map_grid(game, old_x, old_y, new_x, new_y, original_tile);
+		render_exit(game);
+		mlx_image_to_window(game->mlx, game->player_img.ptr, new_x * TILE_SIZE,
+			new_y * TILE_SIZE);
 		check_win_condition(game);
 	}
 }

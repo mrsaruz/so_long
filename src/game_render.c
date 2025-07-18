@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 11:20:04 by adruz-to          #+#    #+#             */
-/*   Updated: 2025/07/17 13:21:22 by adruz-to         ###   ########.fr       */
+/*   Updated: 2025/07/17 18:06:51 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	render_tile(t_game *game, int x, int y, char tile_type)
 	if (!game || !game->mlx || !game->floor.ptr)
 		return ;
 	if (mlx_image_to_window(game->mlx, game->floor.ptr, x * TILE_SIZE, y
-		* TILE_SIZE) < 0)
+			* TILE_SIZE) < 0)
 		return ;
 	if (tile_type == '1' && game->wall.ptr)
 		mlx_image_to_window(game->mlx, game->wall.ptr, x * TILE_SIZE, y
@@ -52,5 +52,33 @@ void	render_map(t_game *game)
 			x++;
 		}
 		y++;
+	}
+}
+
+//
+
+void	render_exit(t_game *game)
+{
+	int	i;
+	int	j;
+
+	if (!game || !game->map.grid)
+		return ;
+	i = 0;
+	while (i < game->map.height)
+	{
+		j = 0;
+		while (j < game->map.width)
+		{
+			if (game->map.grid[i][j] == 'E')
+			{
+				mlx_image_to_window(game->mlx, game->floor.ptr, j * TILE_SIZE, i
+					* TILE_SIZE);
+				mlx_image_to_window(game->mlx, game->exit.ptr, j * TILE_SIZE, i
+					* TILE_SIZE);
+			}
+			j++;
+		}
+		i++;
 	}
 }

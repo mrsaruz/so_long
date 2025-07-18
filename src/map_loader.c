@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 17:31:50 by adruz-to          #+#    #+#             */
-/*   Updated: 2025/07/13 17:28:56 by adruz-to         ###   ########.fr       */
+/*   Updated: 2025/07/18 18:53:18 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,26 @@
 int	count_map_lines(char *filename)
 {
 	int		fd;
-	int		height;
 	char	*line;
+	int		lines;
+	int		len;
 
 	fd = open(filename, O_RDONLY); // Abrir archivo en modo lectura
 	if (fd < 0)
+		return (0);
+	lines = 0;
+	while ((line = get_next_line(fd)) != NULL)
 	{
-		ft_printf("Error: Could not open the file.\n");
-		return (-1); // Devuelve -1 en caso de error
+		len = ft_strlen(line);
+		while (len > 0 && (line[len - 1] == ' ' || line[len - 1] == '\t'
+				|| line[len - 1] == '\n'))
+			len--;
+		if (len > 0) // Solo cuenta las líneas no vacías
+			lines++;
+		free(line);
 	}
-	height = 0;
-	line = get_next_line(fd);
-	while (line) // Lee línea por línea y cuenta
-	{
-		free(line); // Liberamos memoria de la línea leída
-		height++;   // Incrementamos la altura por cada línea
-		line = get_next_line(fd);
-	}
-	close(fd);       // Cerramos el archivo
-	return (height); // Devuelve la altura calculada
+	close(fd);
+	return (lines);
 }
 
 // Asigna memoria para la matriz map->grid
@@ -47,8 +48,9 @@ char	**allocate_map_grid(int height)
 	{
 		ft_printf("Error: Memory allocation failed for map grid\n");
 		return (NULL);
-	} 
-	grid[height] = NULL; // Terminamos con NULL para indicar dónde acaba el array
+	}
+	grid[height] = NULL;
+	// Terminamos con NULL para indicar dónde acaba el array
 	return (grid);
 }
 
@@ -56,18 +58,24 @@ char	**allocate_map_grid(int height)
 int	read_and_trim_line(int fd, char **grid, int i)
 {
 	char	*line;
+	char	*trimmed;
 
-	line = get_next_line(fd);
-	if (!line)
-		return (0);
-
-	grid[i] = ft_strtrim(line, "\n");
-	free(line);
-
-	if (!grid[i])
-		return (0);
-
-	return (1);
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			return (0);
+		trimmed = ft_strtrim(line, " \t\n\r");
+		free(line);
+		if (!trimmed)
+			return (0);
+		if (*trimmed)
+		{
+			grid[i] = trimmed;
+			return (1);
+		}
+		free(trimmed);
+	}
 }
 
 // Ayuda para limpiar memoria parcial
@@ -86,14 +94,14 @@ void	free_grid_error(char **grid, int count)
 // Llena la matriz map->grid con los datos del archivo
 int	fill_map_grid(char *filename, char **grid, int height)
 {
-	int i;
+	int	i;
 	int	fd;
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (0);
 	i = 0;
-	while(i < height)
+	while (i < height)
 	{
 		if (!read_and_trim_line(fd, grid, i))
 		{

@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 18:46:05 by adruz-to          #+#    #+#             */
-/*   Updated: 2025/07/17 13:03:55 by adruz-to         ###   ########.fr       */
+/*   Updated: 2025/07/17 19:46:37 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,6 @@ typedef struct s_game
 }				t_game;
 
 // map validation
-int				validate_player_count(t_map *map);
-int				validate_collectibles(t_map *map);
-int				validate_exit_count(t_map *map);
 int				validate_map(t_map *map);
 
 // map validation utils
@@ -106,6 +103,7 @@ void			key_handler(mlx_key_data_t keydata, void *param);
 // run and render game
 void			run_game(t_game *game);
 void			render_map(t_game *game);
+void			render_exit(t_game *game);
 
 // player movements and utils
 int				can_move_to(t_game *game, int x, int y);

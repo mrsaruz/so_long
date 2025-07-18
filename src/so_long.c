@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 18:45:56 by adruz-to          #+#    #+#             */
-/*   Updated: 2025/07/17 15:55:47 by adruz-to         ###   ########.fr       */
+/*   Updated: 2025/07/17 16:38:07 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 static void	init_game(t_game *game)
 {
+	ft_memset(game, 0, sizeof(t_game));
 	// Inicializammos los punteros a NULL
 	game->mlx = NULL;
+	// Inicializamos la estructura del jugador
+	game->player.x = 0;
+	game->player.y = 0;
+	game->player.moves = 0;
 	// Inicializamos la estructura del mapa
 	game->map.grid = NULL;
 	game->map.width = 0;
@@ -23,14 +28,12 @@ static void	init_game(t_game *game)
 	game->map.collectibles = 0;
 	game->map.exit = 0;
 	game->map.player = 0;
-	// Inicializamos la estructura del jugador
-	game->player.x = 0;
-	game->player.y = 0;
-	game->player.moves = 0;
+	game->map.player_x = 0;
+	game->map.player_y = 0;
 	// Inicializar imágenes a NULL (inicializa los punteros de las texturas a NULL)
+	game->player_img.ptr = NULL;
 	game->wall.ptr = NULL;
 	game->floor.ptr = NULL;
-	game->player_img.ptr = NULL;
 	game->collectible.ptr = NULL;
 	game->exit.ptr = NULL;
 }
