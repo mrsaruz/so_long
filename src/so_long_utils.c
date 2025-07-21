@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:55:04 by adruz-to          #+#    #+#             */
-/*   Updated: 2025/07/17 15:54:00 by adruz-to         ###   ########.fr       */
+/*   Updated: 2025/07/21 12:30:06 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,15 @@ static void	free_map(t_game *game)
 {
 	int	i;
 
-	if (!game || !game->map.grid)
+	if (!game)
 		return ;
+	else if (!game->map.grid)
+			return ;
+
 	i = 0;
-	while (i < game->map.height)
+	while (game->map.grid[i])
 	{
-		if (game->map.grid[i])
-			free(game->map.grid[i]);
+		free(game->map.grid[i]);
 		i++;
 	}
 	free(game->map.grid);
@@ -52,8 +54,10 @@ void	close_game(t_game *game)
 {
 	if (!game)
 		return ;
-
+	
 	free_map(game);
+	
 	if (game->mlx)
 		game->mlx = NULL;
 }
+

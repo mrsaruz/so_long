@@ -6,13 +6,13 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 17:31:50 by adruz-to          #+#    #+#             */
-/*   Updated: 2025/07/18 18:53:18 by adruz-to         ###   ########.fr       */
+/*   Updated: 2025/07/21 13:50:51 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-// Calcala la altura del mapa leyendo el archivo línea por línea
+// Calcala la altura del mapa leyendo el archivo línea por línea.
 int	count_map_lines(char *filename)
 {
 	int		fd;
@@ -54,7 +54,7 @@ char	**allocate_map_grid(int height)
 	return (grid);
 }
 
-// read_and_trim_line
+// Llena el grid
 int	read_and_trim_line(int fd, char **grid, int i)
 {
 	char	*line;
