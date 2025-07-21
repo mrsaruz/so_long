@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 18:46:05 by adruz-to          #+#    #+#             */
-/*   Updated: 2025/07/17 19:46:37 by adruz-to         ###   ########.fr       */
+/*   Updated: 2025/07/21 18:20:08 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,15 @@
 # ifndef EXIT_FAILURE
 #  define EXIT_FAILURE 1
 # endif
+
+// Structure for coordinates and dimensions
+typedef struct s_coords
+{
+	int	x;
+	int	y;
+	int	width;
+	int	height;
+}				t_coords;
 
 // Structure to store an img loaded with MLX
 typedef struct s_img
@@ -111,8 +120,10 @@ void			collect_item(t_game *game, int x, int y);
 int				check_win_condition(t_game *game);
 void			move_player(t_game *game, int dx, int dy);
 void			update_player_coordinates(t_game *game, int new_x, int new_y);
-void			update_map_grid(t_game *game, int old_x, int old_y, int new_x,
-					int new_y, char original_tile);
+void			update_player_position(t_game *game, t_coords *old_pos, 
+					t_coords *new_pos);
+void			update_map_grid(t_game *game, t_coords *old_pos, 
+					t_coords *new_pos, char original_tile);
 // main so_long
 int				main(int ac, char **av);
 

@@ -6,7 +6,7 @@
 #    By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/18 16:36:34 by adruz-to          #+#    #+#              #
-#    Updated: 2025/07/17 13:06:42 by adruz-to         ###   ########.fr        #
+#    Updated: 2025/07/21 18:48:17 by adruz-to         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,4 +92,8 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+# Norminette check (excludes MLX42)
+norm:
+		norminette src/ include/ libft/ ft_printf/ get_next_line/
+
+.PHONY: all clean fclean re norm

@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 12:57:58 by adruz-to          #+#    #+#             */
-/*   Updated: 2025/07/17 18:11:24 by adruz-to         ###   ########.fr       */
+/*   Updated: 2025/07/21 18:20:33 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	update_player_coordinates(t_game *game, int new_x, int new_y)
 }
 
 // Actualiza el grid del mapa
-void	update_map_grid(t_game *game, int old_x, int old_y, int new_x,
-		int new_y, char original_tile)
+void	update_map_grid(t_game *game, t_coords *old_pos, t_coords *new_pos,
+		char original_tile)
 {
-	if (game->map.grid[old_y][old_x] != 'E')
-		game->map.grid[old_y][old_x] = '0';
+	if (game->map.grid[old_pos->y][old_pos->x] != 'E')
+		game->map.grid[old_pos->y][old_pos->x] = '0';
 	if (original_tile != 'E')
-		game->map.grid[new_y][new_x] = 'P';
+		game->map.grid[new_pos->y][new_pos->x] = 'P';
 }
