@@ -6,7 +6,7 @@
 #    By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/18 16:36:34 by adruz-to          #+#    #+#              #
-#    Updated: 2025/07/21 18:48:17 by adruz-to         ###   ########.fr        #
+#    Updated: 2025/07/26 19:36:13 by adruz-to         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,15 @@ INCLUDE_DIRS = -I./include \
 			-I./get_next_line \
 			-I./MLX42/include \
 			-I./libft
+
+# Detect OS for MLX42 flags
+UNAME_S := $(shell uname -s)
+
+ifeq ($(UNAME_S), Darwin)
+	MLX42_FLAGS = -ldl -L/opt/homebrew/lib -lglfw -pthread -lm
+else
+	MLX42_FLAGS = -ldl -lglfw -pthread -lm
+endif
 
 # Compiler and flags
 CC = gcc
@@ -35,9 +44,6 @@ FT_PRINTF = $(FT_PRINTF_DIR)/ft_printf.a
 # Minilibx
 MLX42_DIR = ./MLX42
 MLX42 = $(MLX42_DIR)/build/libmlx42.a
-
-# MLX42 linking flags
-MLX42_FLAGS = -ldl -lglfw -pthread -lm
 
 # Source files
 SRCS = src/game_events.c \

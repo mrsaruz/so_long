@@ -6,7 +6,7 @@
 /*   By: adruz-to <adruz-to@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 17:31:50 by adruz-to          #+#    #+#             */
-/*   Updated: 2025/07/21 18:34:42 by adruz-to         ###   ########.fr       */
+/*   Updated: 2025/07/26 19:26:17 by adruz-to         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	count_map_lines(char *filename)
 	}
 	close(fd);
 	// Limpiar la variable estática de get_next_line
-	gnl_cleanup();
+	// gnl_cleanup();
 	return (lines);
 }
 
@@ -110,13 +110,13 @@ int	fill_map_grid(char *filename, char **grid, int height)
 			free_grid_error(grid, i);
 			close(fd);
 			// Limpiar la variable estática de get_next_line en caso de error
-			gnl_cleanup();
+			// gnl_cleanup();
 			return (0);
 		}
 		i++;
 	}
 	close(fd);
 	// Limpiar la variable estática de get_next_line
-	gnl_cleanup();
+	// gnl_cleanup();
 	return (1);
 }
