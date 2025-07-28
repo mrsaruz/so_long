@@ -1,0 +1,43 @@
+# Ignore macOS system files
+.DS_Store
+
+# Ignore build artifacts
+*.o
+*.a
+*.so
+*.out
+*.exe
+*.dSYM/
+
+# Ignore editor/project files
+.vscode/
+.idea/
+*.swp
+*~
+
+# Ignore binaries and logs
+*.log
+
+# Ignore compiled libraries
+libft/*.o
+libft/*.a
+ft_printf/*.o
+ft_printf/*.a
+
+# Ignore MLX42 build files
+MLX42/build/
+MLX42/CMakeFiles/
+MLX42/CMakeCache.txt
+MLX42/Makefile
+MLX42/*.o
+MLX42/*.a
+MLX42/*.so
+MLX42/*.out
+
+# Ignore user-specific files
+*.user
+*.sublime*
+
+# Ignore test binaries
+MLX42/tests/*.out
+MLX42/tests/*.o
