@@ -1,3 +1,5 @@
+*This project has been created as part of the 42 curriculum by __adruz-to__*
+
 # so_long
 
 [English](#english) | [Español](#español)
@@ -454,10 +456,8 @@ valgrind --leak-check=full --show-leak-kinds=all ./so_long maps/map.ber
 
 ---
 
-## Author / Autor
+### License
 
-adruz-to - 42 Málaga
+This project is part of the 42 School curriculum. Feel free to reference but please don't copy directly for your own 42 projects.
 
-## License / Licencia
-
-This project is part of the 42 curriculum. / Este proyecto es parte del curriculum de 42.
+---
